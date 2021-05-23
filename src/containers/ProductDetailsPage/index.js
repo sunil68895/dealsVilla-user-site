@@ -42,14 +42,14 @@ const ProductDetailsPage = (props) => {
           <div className="verticalImageStack">
             {product.productDetails.productPictures.map((thumb, index) => (
               <div className="thumbnail">
-                <img src={generatePublicUrl(thumb.img)} alt={thumb.img} />
+                <img src={thumb.img} alt={thumb.img} />
               </div>
             ))}
           </div>
           <div className="productDescContainer">
             <div className="productDescImgContainer">
               <img
-                src={generatePublicUrl(product.productDetails.productPictures[0].img)}
+                src={product.productDetails.productPictures[0].img}
                 alt={`${product.productDetails.productPictures[0].img}`}
               />
             </div>

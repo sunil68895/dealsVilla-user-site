@@ -41,7 +41,7 @@ const ProductPage = (props) => {
                             style={{ display: 'block' }}
                             href={banner.navigateTo}
                         >
-                            <img src={generatePublicUrl(banner.img)} alt="" />
+                            <img src={banner.img} alt="" />
                         </a>
                     )
                 }
@@ -65,7 +65,7 @@ const ProductPage = (props) => {
                             <img style={{
                                 width: '100%',
                                 height: '100%'
-                            }} src={generatePublicUrl(product.img)} alt="" />
+                            }} src={product.img} alt="" />
                         </Card>
                     )
                 }
