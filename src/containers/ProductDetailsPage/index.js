@@ -71,15 +71,6 @@ const ProductDetailsPage = (props) => {
                   props.history.push(`/cart`);
                 }}
               />
-              <MaterialButton
-                title="BUY NOW"
-                bgColor="#fb641b"
-                textColor="#ffffff"
-                style={{
-                  marginLeft: "5px",
-                }}
-                icon={<AiFillThunderbolt />}
-              />
             </div>
           </div>
         </div>
