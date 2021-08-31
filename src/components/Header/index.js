@@ -174,13 +174,11 @@ const Header = (props) => {
             <a className="fullName">{auth.user.fullName}</a>
       </div>
 
-      
-      <div style={{ cursor:"pointer"}}>
+  <div style={{ cursor:"pointer"}}>
       <a
+      style={{textDecoration:"none"}}
       className="cart"
-      onClick={() => {
-        !auth.authenticate && setLoginModal(true);
-      }}>
+      href={`/account/orders`}>
       Orders
       </a>
       </div>
