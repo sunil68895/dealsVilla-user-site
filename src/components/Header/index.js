@@ -354,23 +354,7 @@ const Header = (props) => {
         {/* right side menu */}
         <div className="rightMenu">
           {auth.authenticate ? renderLoggedInMenu() : renderNonLoggedInMenu()}
-         /** <DropdownMenu
-            menu={
-              <a className="more">
-                <span>More</span>
-                <IoIosArrowDown />
-              </a>
-            }
-            menus={[
-              { label: "Download App", href: "", icon: null },
-            ]}
-          />
-          <div>
-            <a href={`/cart`} className="cart">
-              <Cart count={Object.keys(cart.cartItems).length} />
-              <span style={{ margin: "0 10px" }}>Cart</span>
-            </a>
-          </div>**/
+     
         </div>
         {/* right side menu ends here */}
       </div>
