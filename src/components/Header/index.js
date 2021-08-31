@@ -32,7 +32,46 @@ const Header = (props) => {
   // state cart value
   const cart = useSelector((state) => state.cart);
 
-  const userSignup = () => {
+   const userSignup = () => {
+    const user = { firstName, lastName, email, password };
+    let atposition=email.indexOf("@");  
+      let dotposition=email.lastIndexOf(".");  
+      if (email==="" || atposition<1 || dotposition<atposition+2 || dotposition+2>=email.length)
+            alert("Please enter a valid e-mail address"); 
+    else if (
+      firstName === "" ||
+      lastName === "" ||
+      password === ""||
+      password.length<6
+    ) alert('Enter fields properly')
+     else
+    dispatch(_signup(user));
+    setFirstName("")
+    setLastName("")
+    setEmail("")
+    setPassword("")
+    if(auth.error) alert(auth.error)
+  };
+
+  const userLogin = () => {
+    if (signup) {
+      userSignup();
+    } else {
+      let atposition=email.indexOf("@");  
+      let dotposition=email.lastIndexOf(".");  
+      if (email==="" || atposition<1 || dotposition<atposition+2 || dotposition+2>=email.length)
+            alert("Please enter a valid e-mail address"); 
+      else if(password=="" || password.length<6) alert('Invalid password')
+      else
+      dispatch(login({ email, password }));
+      setEmail("")
+      setPassword("")
+      if(!auth.authenticate) alert(auth.error)
+    }
+  };
+  
+  
+ /** const userSignup = () => {
     const user = { firstName, lastName, email, password };
     if (
       firstName === "" ||
@@ -54,6 +93,7 @@ const Header = (props) => {
       dispatch(login({ email, password }));
     }
   };
+  **/
 
   const logout = () => {
     dispatch(signout());
@@ -69,7 +109,7 @@ const Header = (props) => {
   //   dispatch(getCartItems());
   // }, []);
 
-  const renderLoggedInMenu = () => {
+  /**const renderLoggedInMenu = () => {
     return (
       <DropdownMenu
         menu={<a className="fullName">{auth.user.fullName}</a>}
@@ -126,7 +166,88 @@ const Header = (props) => {
       />
     );
   };
+**/
+  
+   const renderLoggedInMenu = () => {
+    return (
+      <div style={{display:"flex"}}>
 
+      <div style={{ cursor:"pointer"}}>
+            <a className="fullName">{auth.user.fullName}</a>
+      </div>
+
+      
+      <div style={{ cursor:"pointer"}}>
+      <a
+      className="cart"
+      onClick={() => {
+        !auth.authenticate && setLoginModal(true);
+      }}>
+      Orders
+      </a>
+      </div>
+      
+      
+      <div style={{cursor:"pointer"}}>
+              <a
+              className="cart"
+              onClick={logout}>
+              Logout
+              </a>
+      </div>
+      
+      <div>
+      <a href={`/cart`} className="cart">
+        <Cart count={Object.keys(cart.cartItems).length} />
+        <span style={{ margin: "0 10px" }}>Cart</span>
+      </a>
+    </div>
+      
+    </div>
+
+      
+    );
+  };
+
+  const renderNonLoggedInMenu = () => {
+    return (
+
+      <div style={{display:"flex"}}>
+            <div style={{padding:'0px 5px', cursor:"pointer"}}>
+            <a
+            className="cart"
+            onClick={() => { setSignup(false);  setLoginModal(true); }}>
+            Login
+            </a>
+            </div>
+
+            <div style={{padding:'0px 5px', cursor:"pointer"}}>
+            <a
+            className="cart"
+            onClick={() => {
+              setLoginModal(true);
+              setSignup(true);
+            }}>
+            Signup
+            </a>
+            </div>
+
+            <div>
+            <a href={`/cart`} className="cart">
+              <Cart count={Object.keys(cart.cartItems).length} />
+              <span style={{ margin: "0 10px" }}>Cart</span>
+            </a>
+          </div>
+
+            
+          </div>
+      
+     
+    );
+  };
+  
+  
+  
   return (
     <div className="header">
       <Modal visible={loginModal} onClose={() => setLoginModal(false)}>
@@ -233,7 +354,7 @@ const Header = (props) => {
         {/* right side menu */}
         <div className="rightMenu">
           {auth.authenticate ? renderLoggedInMenu() : renderNonLoggedInMenu()}
-          <DropdownMenu
+         /** <DropdownMenu
             menu={
               <a className="more">
                 <span>More</span>
@@ -249,7 +370,7 @@ const Header = (props) => {
               <Cart count={Object.keys(cart.cartItems).length} />
               <span style={{ margin: "0 10px" }}>Cart</span>
             </a>
-          </div>
+          </div>**/
         </div>
         {/* right side menu ends here */}
       </div>
