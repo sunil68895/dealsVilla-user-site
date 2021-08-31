@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
+import { useSelector } from "react-redux";
 import {generatePublicUrl} from '../../../urlConfig'
 
 /**
@@ -8,6 +9,7 @@ import {generatePublicUrl} from '../../../urlConfig'
  **/
 
 const CartItem = (props) => {
+   const auth = useSelector((state) => state.auth);
   const [qty, setQty] = useState(props.cartItem.qty);
 
   const { _id, name, price, img } = props.cartItem;
@@ -49,13 +51,15 @@ const CartItem = (props) => {
           <input value={qty} readOnly />
           <button onClick={onQuantityIncrement}>+</button>
         </div>
-        <button className="cartActionBtn">save for later</button>
+       { auth.authenticate ?
         <button
           className="cartActionBtn"
           onClick={() => props.onRemoveCartItem(_id)}
         >
           Remove
         </button>
+        :null
+      }
       </div>
     </div>
   );
