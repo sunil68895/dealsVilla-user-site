@@ -65,6 +65,7 @@ const CartPage = (props) => {
             cartItem={cartItems[key]}
             onQuantityInc={onQuantityIncrement}
             onQuantityDec={onQuantityDecrement}
+            onRemoveCartItem={onRemoveCartItem}
           />
         ))}
       </>
