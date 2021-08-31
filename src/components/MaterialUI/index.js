@@ -14,7 +14,7 @@ const Modal = (props) => {
     <>
       <div className="modalFixedBg">
         <div style={{ position: "relative" }}>
-          <div className="modalClose" onClick={props.onClose}>
+          <div className="modalClose" onClick={props.onClose} style={{cursor:"pointer"}}>
             X
           </div>
           <div className="modalContainer">{props.children}</div>
