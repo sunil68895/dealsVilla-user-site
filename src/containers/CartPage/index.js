@@ -100,13 +100,16 @@ const CartPage = (props) => {
               boxSizing: "border-box",
             }}
           >
-            <div style={{ width: "250px" }}>
+              { auth.authenticate ? <div style={{ width: "250px" }}>
               <MaterialButton
                 title="PLACE ORDER"
                 onClick={() => props.history.push(`/checkout`)}
               />
-            </div>
+            </div> : <h3>To place order please login. You can delete items from your cart after login &#128516;  &nbsp; &nbsp;</h3>}
+
           </div>
+
+
         </Card>
         <PriceDetails
           totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
