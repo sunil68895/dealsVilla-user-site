@@ -50,7 +50,6 @@ const Header = (props) => {
     setLastName("")
     setEmail("")
     setPassword("")
-    if(auth.error) alert(auth.error)
   };
 
   const userLogin = () => {
@@ -66,7 +65,6 @@ const Header = (props) => {
       dispatch(login({ email, password }));
       setEmail("")
       setPassword("")
-      if(!auth.authenticate) alert(auth.error)
     }
   };
   
